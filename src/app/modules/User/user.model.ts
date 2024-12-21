@@ -15,26 +15,32 @@ const userNameSchema = new Schema<UserName>({
   },
 });
 
-const userSchema = new Schema<TUser>({
-  name: userNameSchema,
-  email: {
-    type: String,
-    required: true,
+const userSchema = new Schema<TUser>(
+  {
+    name: userNameSchema,
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      select: 0,
+    },
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+      default: 'user',
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
   },
-  password: {
-    type: String,
-    required: true,
-    select: 0,
+  {
+    timestamps: true,
   },
-  role: {
-    type: String,
-    enum: ['admin', 'user'],
-  },
-  isBlocked: {
-    type: Boolean,
-    default: false,
-  },
-});
+);
 
 export const User = model<TUser>('User', userSchema);
 
