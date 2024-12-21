@@ -3,7 +3,6 @@ export type UserName = {
   middleName: string;
   lastName: string;
 };
-
 export interface TUser {
   name: UserName;
   email: string;
