@@ -1,7 +1,11 @@
+// import { config } from "dotenv";
+
 import { Server } from 'http';
 import mongoose from 'mongoose';
 import app from './app';
-import config from './app/config';
+import config from './app/config/index';
+
+// const mongoose = require('mongoose');
 
 let server: Server;
 
