@@ -1,3 +1,14 @@
+import { Types } from 'mongoose';
+
+export type TBlog = {
+  title: string;
+  content: string;
+  author: Types.ObjectId;
+  isPublished: boolean;
+};
+
+// Blog Model:
+
 // title: string – The title of the blog post.
 // content: string – The main body or content of the blog post.
 // author: ObjectId – A reference to the User model, indicating the author of the blog post.
