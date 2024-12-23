@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
+import bcrypt from 'bcrypt';
 import { model, Schema } from 'mongoose';
-import { TUser, UserName } from './user.interface';
+import config from '../../config';
+import { TUser, UserModel, UserName } from './user.interface';
 
 const userNameSchema = new Schema<UserName>({
   firstName: {
@@ -15,7 +18,7 @@ const userNameSchema = new Schema<UserName>({
   },
 });
 
-const userSchema = new Schema<TUser>(
+const userSchema = new Schema<TUser, UserModel>(
   {
     name: userNameSchema,
     email: {
@@ -42,4 +45,32 @@ const userSchema = new Schema<TUser>(
   },
 );
 
-export const User = model<TUser>('User', userSchema);
+// pre save midddleware/ hook : will work on create() save()
+userSchema.pre('save', async function (next) {
+  const user = this;
+
+  user.password = await bcrypt.hash(
+    user.password,
+    Number(config.bcrypt_salt_rounds),
+  );
+  next();
+});
+
+// set '' after saving password
+userSchema.post('save', function (doc, next) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  (doc.password = ''), next();
+});
+
+userSchema.statics.isUserExistsByCustomId = async function (email: string) {
+  console.log('Custom id', email);
+  return await User.findOne({ email }).select('+password');
+};
+userSchema.statics.isPasswordMatched = async function (
+  plainTextPassword,
+  hashedPassword,
+) {
+  return await bcrypt.compare(plainTextPassword, hashedPassword);
+};
+
+export const User = model<TUser, UserModel>('User', userSchema);

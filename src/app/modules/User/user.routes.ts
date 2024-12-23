@@ -1,14 +1,14 @@
-import express from 'express';
-import validateRequest from '../../middlewares/validateRequest';
-import { UserController } from './user.controller';
-import { userValidation } from './user.validation';
+// import express from 'express';
+// import validateRequest from '../../middlewares/validateRequest';
+// import { UserController } from './user.controller';
+// import { userValidation } from './user.validation';
 
-const router = express.Router();
+// const router = express.Router();
 
-router.post(
-  '/register',
-  validateRequest(userValidation.createUserValidationSchema),
-  UserController.createUser,
-);
+// router.post(
+//   '/register',
+//   validateRequest(userValidation.createUserValidationSchema),
+//   UserController.createUser,
+// );
 
-export const UserRoutes = router;
+// export const UserRoutes = router;
