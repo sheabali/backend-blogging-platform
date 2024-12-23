@@ -6,7 +6,7 @@ import { blogValidation } from './blog.validation';
 const router = express.Router();
 
 router.post(
-  '/register',
+  '/',
   validateRequest(blogValidation.createBlogValidationSchema),
   BlogController.createBlog,
 );
