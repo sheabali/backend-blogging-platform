@@ -40,8 +40,8 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, nex) => {
     errorSource = simplifiedError?.errorSources;
   } else if (err?.code === 11000) {
     const simplifiedError = handleDuplicateError(err);
-    (statusCode = simplifiedError?.statusCode),
-      (message = simplifiedError?.message);
+    statusCode = simplifiedError?.statusCode;
+    message = simplifiedError?.message;
     errorSource = simplifiedError?.errorSources;
   } else if (err instanceof AppError) {
     (statusCode = err.statusCode), (message = err.message);

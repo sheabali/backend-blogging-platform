@@ -5,7 +5,7 @@ import sendResponse from '../../utils/sendResponse';
 import { BlogService } from './blog.service';
 
 const createBlog = catchAsync(async (req: Request, res: Response) => {
-  const result = await BlogService.createBlog(req.body);
+  const result = await BlogService.createBlogIntoDB(req.body);
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
@@ -13,7 +13,31 @@ const createBlog = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const updateBlog = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  console.log('data', id);
+  const result = await BlogService.updateBlogIntoDB(id, req.body);
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Blog updated successfully.',
+    data: result,
+  });
+});
+const deleteBlog = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await BlogService.deleteBlogIntoDB(id);
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Blog delete successfully.',
+    data: result,
+  });
+});
 
 export const BlogController = {
   createBlog,
+  updateBlog,
+  deleteBlog,
 };
