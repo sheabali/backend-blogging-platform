@@ -14,7 +14,7 @@ const getAllBlogFromDB = async (query: Record<string, unknown>) => {
     .filter();
 
   const result = await BlogQuery.modelQuery;
-  console.log(BlogQuery);
+
   return result;
 };
 const updateBlogIntoDB = async (id: string, updateData: Partial<TBlog>) => {
