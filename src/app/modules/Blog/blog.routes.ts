@@ -10,11 +10,14 @@ router.post(
   validateRequest(blogValidation.createBlogValidationSchema),
   BlogController.createBlog,
 );
+router.get('/', BlogController.getAllBlog);
+
 router.patch(
   '/:id',
   validateRequest(blogValidation.updateBlogValidationSchema),
   BlogController.updateBlog,
 );
+
 router.delete('/:id', BlogController.deleteBlog);
 
 export const BlogRoutes = router;
