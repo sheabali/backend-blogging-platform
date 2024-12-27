@@ -3,8 +3,8 @@ import { AdminControllers } from './admin.controller';
 
 const router = express.Router();
 
-router.patch('/:id');
+router.patch('/users/:userId/block');
 
-router.delete('/:blogId', AdminControllers.deleteBlog);
+router.delete('/blogs/:id', AdminControllers.deleteBlog);
 
 export const AdminRoutes = router;
