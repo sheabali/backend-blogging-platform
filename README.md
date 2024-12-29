@@ -42,22 +42,14 @@ The Blog Project Server is a backend application built to manage blogs with role
 
 ## Installation
 
-1. Clone the repository
+Clone the repository
 
-```bash
-git clone https://github.com/sheabali/backend-blogging-platform
-```
-
-2. Install node modules
+git clone https://github.com/shariful10/blog-project-server.git
+Install node modules
 
 To install the necessary dependencies, run the following command:
 
-```bash
 npm install
-```
-
 Run the project
 
-```bash
 npm run start:dev
-```
