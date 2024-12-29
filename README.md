@@ -1,7 +1,5 @@
 # backend-blogging-platform
 
-<<<<<<< HEAD
-
 Blog Project Server
 🌐 Live API URL
 Access the deployed API here: Live Link
