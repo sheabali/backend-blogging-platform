@@ -9,7 +9,7 @@ const createBlog = catchAsync(async (req: Request, res: Response) => {
   const { email } = req.user;
   const result = await BlogService.createBlogIntoDB(req.body, email);
   sendResponse(res, {
-    statusCode: StatusCodes.OK,
+    statusCode: StatusCodes.CREATED,
     success: true,
     message: 'Blog create successfully.',
     data: result,

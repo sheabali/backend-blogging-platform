@@ -15,7 +15,7 @@ const blockUserIntoDB = async (id: string) => {
 };
 
 const deleteUserFromDB = async (id: string) => {
-  const result = await Blog.findByIdAndUpdate(id);
+  const result = await Blog.findByIdAndDelete(id);
 
   if (!result) {
     throw new AppError(StatusCodes.NOT_FOUND, 'Blog Not Found!');

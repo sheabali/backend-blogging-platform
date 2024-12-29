@@ -25,15 +25,16 @@ class QueryBuilder<T> {
 
     return this;
   }
-
   filter() {
     const queryObj = { ...this.query };
-
     const excludeField = ['search', 'sortBy', 'sortOrder'];
     excludeField.forEach((el) => delete queryObj[el]);
 
+    console.log('ache', this.query);
+
     // Handle author filter separately
     if (this.query.author) {
+      console.log('ache');
       queryObj.author = this.query.author;
     }
 

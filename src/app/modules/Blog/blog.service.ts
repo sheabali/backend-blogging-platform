@@ -10,17 +10,29 @@ import { Blog } from './blog.model';
 const createBlogIntoDB = async (payload: TBlog, email: string) => {
   const user = await User.isUserExists(email);
   payload.author = user?._id as Types.ObjectId;
-  const result = (await Blog.create(payload)).populate('author');
+  if (user?.role !== 'user') {
+    throw new AppError(
+      StatusCodes.FORBIDDEN,
+      'You are not authorized to create a blog',
+    );
+  }
+  const createdBlog = await Blog.create(payload);
+  const result = await Blog.findById(createdBlog._id)
+    .select('-__v')
+    .populate('author');
   return result;
 };
 
 const getAllBlogFromDB = async (query: Record<string, unknown>) => {
-  const BlogQuery = new QueryBuilder(Blog.find(), query)
+  const blogQuery = new QueryBuilder(
+    Blog.find().select('-__v').populate('author'),
+    query,
+  )
     .search(blogSearchableFields)
-    .filter()
-    .sort();
+    .sort()
+    .filter();
 
-  const result = await BlogQuery.modelQuery;
+  const result = await blogQuery.modelQuery;
 
   return result;
 };
@@ -51,7 +63,7 @@ const updateBlogIntoDB = async (
       new: true,
       runValidators: true,
     },
-  );
+  ).populate('author');
 
   return result;
 };
