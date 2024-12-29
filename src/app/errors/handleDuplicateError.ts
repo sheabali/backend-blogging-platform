@@ -10,7 +10,7 @@ const handleDuplicateError = (err: any): TGenericErrorRespons => {
   // The extracted value will be in the first capturing group
   const extractedMessage = match && match[1] ? match[1] : 'Duplicate key'; // Fallback message
 
-  const errorSources: TErrorSources = [
+  const error: TErrorSources = [
     {
       path: '', // Optional: Set a specific path if available
       message: `${extractedMessage} already exists.`,
@@ -18,11 +18,11 @@ const handleDuplicateError = (err: any): TGenericErrorRespons => {
   ];
   const statusCode = 400;
 
-  console.log(errorSources);
+  console.log(error);
   return {
     statusCode,
     message: 'Duplicate key error.',
-    errorSources,
+    error,
   };
 };
 
