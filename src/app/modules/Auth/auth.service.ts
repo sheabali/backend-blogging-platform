@@ -15,7 +15,7 @@ const createUserIntoDB = async (payload: TUser) => {
 
 const loginUser = async (payload: TLoginUser) => {
   // checking if the user is exist
-  const user = await User.isUserExistsByCustomId(payload?.email);
+  const user = await User.isUserExists(payload?.email);
   console.log(user);
 
   if (!user) {
@@ -39,7 +39,7 @@ const loginUser = async (payload: TLoginUser) => {
 
   //create token and sent to the  client
   const jwtPayload = {
-    userId: user.email,
+    email: user.email,
     role: user?.role,
   };
 

@@ -4,8 +4,9 @@ import sendResponse from '../../utils/sendResponse';
 import { AdminServices } from './admin.service';
 
 const blockUser = catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const result = await AdminServices.blockUserIntoDB(id);
+  const { userId } = req.params;
+  console.log('userID', userId);
+  const result = await AdminServices.blockUserIntoDB(userId);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,

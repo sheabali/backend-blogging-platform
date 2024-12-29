@@ -4,10 +4,11 @@ import sendResponse from '../../utils/sendResponse';
 import { AuthServices } from './auth.service';
 
 const createUser = catchAsync(async (req, res) => {
-  const result = await AuthServices.createUserIntoDB(req.body);
-
+  const user = await AuthServices.createUserIntoDB(req.body);
+  const { _id, name, email } = user;
+  const result = { _id, name, email };
   sendResponse(res, {
-    statusCode: StatusCodes.OK,
+    statusCode: StatusCodes.CREATED,
     success: true,
     message: 'User registered successfully.',
     data: result,

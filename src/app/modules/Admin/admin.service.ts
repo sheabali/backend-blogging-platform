@@ -4,7 +4,9 @@ import { Blog } from '../Blog/blog.model';
 import { User } from '../User/user.model';
 
 const blockUserIntoDB = async (id: string) => {
-  const result = await User.findByIdAndUpdate({ id }, { isBlocked: true });
+  const result = await User.findByIdAndUpdate(id, {
+    isBlocked: true,
+  });
 
   if (!result) {
     throw new AppError(StatusCodes.NOT_FOUND, 'User Not Found!');

@@ -1,14 +1,8 @@
 import { z } from 'zod';
 
-export const userNameSchema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
-  middleName: z.string().optional(),
-  lastName: z.string().min(1, 'Last name is required'),
-});
-
 export const createUserValidationSchema = z.object({
   body: z.object({
-    name: userNameSchema,
+    name: z.string(),
     email: z.string().email('Invalid email format').min(1, 'Email is required'),
     password: z
       .string()
