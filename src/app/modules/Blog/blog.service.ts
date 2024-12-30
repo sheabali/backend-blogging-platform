@@ -72,8 +72,6 @@ const deleteBlogIntoDB = async (id: string, email: string) => {
 
   const blog = await Blog.findById(id);
 
-  console.log('id', id, { blog });
-
   if (!blog) {
     throw new AppError(StatusCodes.NOT_FOUND, 'Blog Not Found!');
   }

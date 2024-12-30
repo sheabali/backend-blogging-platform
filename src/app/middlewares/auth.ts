@@ -24,7 +24,7 @@ const auth = (...requiredRoles: TUserRole[]) =>
       token,
       config.jwt_access_secret as string,
     ) as JwtPayload;
-    console.log(decoded);
+
     const { role, email } = decoded;
     console.log('email', email, role);
 
@@ -33,7 +33,7 @@ const auth = (...requiredRoles: TUserRole[]) =>
     if (!user) {
       throw new AppError(404, 'User not found!');
     }
-    console.log('USER', user);
+
     // Check if the user is blocked
     if (user.isBlocked) {
       throw new AppError(403, 'This user is blocked!');

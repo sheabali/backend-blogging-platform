@@ -29,13 +29,9 @@ const loginUser = async (payload: TLoginUser) => {
     throw new AppError(StatusCodes.FORBIDDEN, 'This user is blocked ! !');
   }
 
-  // const isPasswordMatched =
-
   if (!(await User.isPasswordMatched(payload?.password, user?.password))) {
     throw new AppError(StatusCodes.FORBIDDEN, 'Password do not matched!');
   }
-  // console.log(isPasswordMatched);
-  //checking if the password is correct
 
   //create token and sent to the  client
   const jwtPayload = {
