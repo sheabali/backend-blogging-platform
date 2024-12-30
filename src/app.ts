@@ -25,7 +25,7 @@ const test = async (req: Request, res: Response) => {
 };
 
 app.get('/', test);
-
+// console.log()
 // Error-handling middleware
 app.use(globalErrorHandler);
 app.use(notFound);
