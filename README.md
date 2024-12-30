@@ -2,7 +2,7 @@
 
 Blog Project Server
 🌐 Live API URL
-Access the deployed API here: Live Link
+Access the deployed API here: [Live Link](https://blogging-platform-backend-tawny.vercel.app/)
 
 📜 Overview
 The Blog Project Server is a backend application built to manage blogs with role-based access control. It allows users to create, update, and delete blogs, while an admin has extended permissions to manage users and their blogs. The server supports secure authentication, data validation, and API endpoints for public and private use.
