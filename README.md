@@ -53,11 +53,11 @@ git clone https://github.com/sheabali/backend-blogging-platform
 To install the necessary dependencies, run the following command:
 
 ```bash
-npm install
+yarn install
 ```
 
 Run the project
 
 ```bash
-npm run start:dev
+yarn start:dev
 ```

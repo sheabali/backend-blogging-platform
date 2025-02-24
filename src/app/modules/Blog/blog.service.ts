@@ -16,6 +16,13 @@ const createBlogIntoDB = async (payload: TBlog, email: string) => {
       'You are not authorized to create a blog',
     );
   }
+
+  if (user?.isBlocked === true) {
+    throw new AppError(
+      StatusCodes.FORBIDDEN,
+      'You are blocked by admin. Please contact admin for more information.',
+    );
+  }
   const createdBlog = await Blog.create(payload);
   const result = await Blog.findById(createdBlog._id)
     .select('-__v')
